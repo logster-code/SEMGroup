@@ -1,4 +1,4 @@
-name: A workflow for our group project
+name: A workflow for the group project
 on: push
 
 jobs:
