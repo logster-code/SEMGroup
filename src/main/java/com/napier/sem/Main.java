@@ -7,9 +7,23 @@ import java.sql.*;
  **/
 public class Main
 {
+    private Connection con = null;
+
     public static void main(String[] args)
     {
-        // loads driver and deals with errors in loading
+        // create new main and begin connection process to database
+        Main m = new Main();
+        m.connect();
+        m.disconnect();
+
+    }
+
+    /**
+     * connects to the database and alerts user of any problems
+     */
+    public void connect()
+    {
+        // load database driver and deals with failure to load
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,10 +33,7 @@ public class Main
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
-
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
+        int retries = 10;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -32,7 +43,6 @@ public class Main
                 Thread.sleep(30000);
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                Thread.sleep(10000);
                 break;
             }
             catch (SQLException sqle)
@@ -45,12 +55,16 @@ public class Main
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
-        // closes database connection and alerts user of any problems in closing the connection
+    }
+    /**
+     * closes database connection and alerts user of any problems in closing the connection
+     */
+    public void disconnect()
+    {
         if (con != null)
         {
             try
             {
-                // Close connection
                 con.close();
             }
             catch (Exception e)
