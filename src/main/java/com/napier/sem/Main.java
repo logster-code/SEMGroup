@@ -2,13 +2,16 @@ package com.napier.sem;
 
 import java.sql.*;
 
+/**
+ * main class for our program. will be used to call all the data we have sorted and display the results.
+ **/
 public class Main
 {
     public static void main(String[] args)
     {
+        // loads driver and deals with errors in loading
         try
         {
-            // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
@@ -23,16 +26,13 @@ public class Main
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
+            // loads the connection to the database and deals with failed connections
             try
             {
-                // Wait a bit for db to start
                 Thread.sleep(30000);
-                // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                // Wait a bit
                 Thread.sleep(10000);
-                // Exit for loop
                 break;
             }
             catch (SQLException sqle)
@@ -45,7 +45,7 @@ public class Main
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
-
+        // closes database connection and alerts user of any problems in closing the connection
         if (con != null)
         {
             try
