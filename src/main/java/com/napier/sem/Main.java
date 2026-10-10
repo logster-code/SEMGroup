@@ -1,19 +1,33 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * main class for our program. will be used to call all the data we have sorted and display the results.
- **/
+ */
 public class Main
 {
+    // variable used to create the database connection
     private Connection con = null;
 
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args)
     {
         // create new main and begin connection process to database
         Main m = new Main();
         m.connect();
+        //creating arraylist to store result of countries by population and printing each country out
+        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+        for (Country c : countriesByPop)
+        {
+            System.out.println(c.toString());
+        }
         m.disconnect();
 
     }
@@ -56,6 +70,7 @@ public class Main
             }
         }
     }
+
     /**
      * closes database connection and alerts user of any problems in closing the connection
      */
