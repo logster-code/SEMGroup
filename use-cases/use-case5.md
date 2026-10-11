@@ -1,10 +1,10 @@
-# USE CASE: 5 Produce a Population Report of people living in and not living in cities for each continent, region or country
+# USE CASE: 5 Produce a Report on the capital cities of the world, a continent or a region organised by population
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *data analyst* I want *to see how many people live in cities and how many do not* so that *I can see how urban each area is.*
+As a *data analyst* I want *to see capital cities from biggest to smallest in the world, a continent or a region* so that *I can compare capitals in my report.*
 
 ### Scope
 
@@ -16,11 +16,11 @@ user goal.
 
 ### Preconditions
 
-Database has country populations and city populations.
+Database has city population data. Database knows the capital of each country.
 
 ### Success End Condition
 
-Analyst gets a population report. For each area it shows the name and total population. It also shows the population living in cities and not living in cities, each with a percentage.
+Analyst gets a capital city report. It shows Name, Country and Population. It is ordered from largest to smallest.
 
 ### Failed End Condition
 
@@ -32,33 +32,33 @@ data analyst.
 
 ### Trigger
 
-data analyst asks for the population report.
+data analyst asks for the capital city report.
 
 ## MAIN SUCCESS SCENARIO
 
-1. data analyst picks the population report.
-2. data analyst chooses the level: continent, region or country.
-3. system adds up the total and city populations for each area.
-4. system works out the population not living in cities.
-5. system works out both percentages.
-6. system shows the population report.
-7. data analyst adds the data to their report.
+1. data analyst picks the capital city report.
+2. data analyst chooses the area: world, continent or region.
+3. data analyst enters the name of the continent or region if needed.
+4. system finds the capital cities in that area, biggest first.
+5. system shows the capital city report.
+6. data analyst adds the data to their report.
 
 ## EXTENSIONS
 
-3a. **an area has no cities in the database**:
-    1. system shows 0 living in cities.
-    2. system shows 100% not living in cities.
+3. **continent or region does not exist**:
+   1. system shows an error.
+   2. system asks for the area again.
 
-6a. **no data is produced**:
-    1. analyst tells the developers.
+4. **a country has no capital in the database**:
+   1. system leaves that country out.
+
+5. **no data is produced**:
+   1. analyst tells the developers.
 
 ## SUB-VARIATIONS
 
-1. The level is continent.
-2. The level is region.
-3. The level is country.
+1. The area can be the world, a continent or a region.
 
 ## SCHEDULE
 
-**DUE DATE**: Release 0.2
+**DUE DATE**: Release 0.3

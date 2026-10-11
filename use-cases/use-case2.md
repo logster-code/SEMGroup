@@ -20,7 +20,7 @@ Database has country population data. Analyst knows the area and the value of N.
 
 ### Success End Condition
 
-Analyst gets a country report of the N biggest countries. It shows Code, Name, Continent, Region, Population and Capital. It is ordered from largest to smallest.
+Analyst gets a country report of the N most populated countries. It shows Code, Name, Continent, Region, Population and Capital. It is ordered from largest to smallest.
 
 ### Failed End Condition
 
@@ -46,18 +46,15 @@ data analyst asks for the top N countries report.
 
 ## EXTENSIONS
 
-3a. **continent or region does not exist**:
+3. **continent or region does not exist**:
     1. system shows an error.
     2. system asks for the area again.
 
-4a. **N is not a positive whole number**:
+4. **N is not a positive whole number**:
     1. system shows an error.
     2. system asks for N again.
 
-4b. **N is bigger than the number of countries in the area**:
-    1. system shows all the countries in the area.
-
-6a. **no data is produced**:
+6. **no data is produced**:
     1. analyst tells the developers.
 
 ## SUB-VARIATIONS

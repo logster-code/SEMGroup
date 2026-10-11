@@ -45,14 +45,14 @@ data analyst asks for the city report.
 
 ## EXTENSIONS
 
-3a. **area does not exist**:
+3. **area does not exist**:
     1. system shows an error.
     2. system asks for the area again.
 
-4a. **no cities are found in the area**:
+4. **no cities are found in the area**:
     1. system says there are no cities to report.
 
-5a. **no data is produced**:
+5. **no data is produced**:
     1. analyst tells the developers.
 
 ## SUB-VARIATIONS
@@ -62,4 +62,4 @@ data analyst asks for the city report.
 
 ## SCHEDULE
 
-**DUE DATE**: Release 0.2
+**DUE DATE**: Release 0.3

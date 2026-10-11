@@ -48,7 +48,9 @@ data analyst runs the program.
 
 ## SUB-VARIATIONS
 
-None.
+1. The area is the world.
+2. The area is a continent.
+3. The area is a region.
 
 ## SCHEDULE
 

@@ -1,10 +1,10 @@
-# USE CASE: 6 Find the population of the world, a continent, a region, a country, a district or a city
+# USE CASE: 6 Produce a Report on the top N populated capital cities of the world, a continent or a region
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *data analyst* I want *to look up the population of a place* so that *I can use the number in my report.*
+As a *data analyst* I want *to see the top N populated capital cities from in the world, a continent or a region* so that *I can compare the most populated capitals in my report.*
 
 ### Scope
 
@@ -16,15 +16,15 @@ user goal.
 
 ### Preconditions
 
-Database has population data for countries and cities.
+Database has city population data. Database knows the capital of each country.
 
 ### Success End Condition
 
-Analyst sees the population of the place they asked for.
+Analyst gets a capital city report. It shows Name, Country and Population. It is ordered from largest to smallest by population and is only the top N most populated.
 
 ### Failed End Condition
 
-No number is shown. An error message is shown.
+No report is made. An error message is shown.
 
 ### Primary Actor
 
@@ -32,38 +32,38 @@ data analyst.
 
 ### Trigger
 
-data analyst asks for a population figure.
+data analyst asks for the capital city report.
 
 ## MAIN SUCCESS SCENARIO
 
-1. data analyst picks the population lookup.
-2. data analyst chooses what to look up: world, continent, region, country, district or city.
-3. data analyst enters the name if needed.
-4. system finds the population.
-5. system shows the population.
-6. data analyst adds the number to their report.
+1. data analyst picks the capital city report.
+2. data analyst chooses the area: world, continent or region.
+3. data analyst enters the name of the continent or region if needed.
+4. data analyst enters N
+5. system finds the capital cities in that area, biggest first.
+6. system shows the capital city report.
+7. data analyst adds the data to their report.
 
 ## EXTENSIONS
 
-3a. **name is not in the database**:
+3. **continent or region does not exist**:
     1. system shows an error.
-    2. system asks for the name again.
+    2. system asks for the area again.
 
-3b. **name matches more than one place**:
-    1. system asks the analyst to be more specific.
+4. **N is not a positive integer**
+    1. system shows an error.
+    2. system asks for N again.
 
-5a. **no data is produced**:
+5. **a country has no capital in the database**:
+    1. system leaves that country out.
+
+6. **no data is produced**:
     1. analyst tells the developers.
 
 ## SUB-VARIATIONS
 
-1. The world.
-2. A continent.
-3. A region.
-4. A country.
-5. A district.
-6. A city.
+1. The area can be the world, a continent or a region.
 
 ## SCHEDULE
 
-**DUE DATE**: Release 0.2
+**DUE DATE**: Release 0.3
