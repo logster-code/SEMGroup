@@ -23,13 +23,7 @@ public class Main
         // create new main and begin connection process to database
         Main m = new Main();
         m.connect();
-        //creating arraylist to store result of countries by population and printing each country out
-        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
-        System.out.println("countries in the world filtered by population:");
-        for (Country c : countriesByPop)
-        {
-            System.out.println(c.toString());
-        }
+        feature1(m);
 
         // initialise scanner variable and receive decision on continents list
         Scanner scan = new Scanner(System.in);
@@ -88,6 +82,17 @@ public class Main
             }
         }
         m.disconnect();
+    }
+
+    public static void feature1(Main m)
+    {
+        //creating arraylist to store result of countries by population and printing each country out
+        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+        System.out.println("countries in the world filtered by population:");
+        for (Country c : countriesByPop)
+        {
+            System.out.println(c.toString());
+        }
     }
 
     /**
