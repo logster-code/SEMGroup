@@ -32,19 +32,24 @@ public class Main
             System.out.println(c.toString());
         }
 
+        // initialise scanner variable and receive decision on continents list
         Scanner scan = new Scanner(System.in);
         System.out.println("Would you like to see a continents countries sorted by population? (yes/no)");
         String userChoice = scan.nextLine();
 
+        // loop while user wants to see continents list
         while (!userChoice.equals("no")) {
+            // receive continent to see
             System.out.println("please enter one of the following continents: \n Africa \n Antarctica \n Asia \n Europe \n Oceania \n North America \n South America \n this is case sensitive!\n");
             String continent = scan.nextLine();
 
+            // create array list and assign countries in chosen continent using Country method
             ArrayList<Country> countriesByPopContinent = new ArrayList<>(Country.getCountriesByPopContinent(m.con, continent));
             System.out.println("countries in " + continent + " filtered by population:");
             for (Country c : countriesByPopContinent) {
                 System.out.println(c.toString());
             }
+            // ask user if they'd like to continue
             System.out.println("would you like to see another continent?");
             userChoice = scan.nextLine();
             if (userChoice.equals("no"))
@@ -52,6 +57,8 @@ public class Main
                 break;
             }
         }
+        // process will be same as continent simply replacing the continents with regions.
+
         m.disconnect();
     }
 

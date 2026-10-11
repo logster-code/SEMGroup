@@ -92,6 +92,14 @@ public class Country {
             }
         return countries;
     }
+
+    /**
+     * Gets countries in a continent by population.
+     *
+     * @param con  the connection
+     * @param cont the continent
+     * @return the countries by in a continent sorted by population descending
+     */
     public static ArrayList<Country> getCountriesByPopContinent(Connection con, String cont)
     {
         //creates empty list to store countries
@@ -101,12 +109,12 @@ public class Country {
         {
             // creates the statement and result set for the query
             Statement stmt = con.createStatement();
-            String popString =
+            String popContString =
                     "SELECT code, name, continent, region, population, capital "
                             + "FROM country "
                             + "WHERE continent ='" + cont + "'"
                             + "ORDER BY population DESC";
-            ResultSet rset = stmt.executeQuery(popString);
+            ResultSet rset = stmt.executeQuery(popContString);
 
             // while there is more results add each country into the array list
             while (rset.next())
@@ -123,7 +131,50 @@ public class Country {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get countries by population");
+            System.out.println("Failed to get countries in " + cont + " by population");
+        }
+        return countries;
+    }
+
+    /**
+     * Gets countries in a region by population.
+     *
+     * @param con  the connection
+     * @param reg the region
+     * @return the countries by in a region sorted by population descending
+     */
+    public static ArrayList<Country> getCountriesByPopRegion(Connection con, String reg)
+    {
+        //creates empty list to store countries
+        ArrayList<Country> countries = new ArrayList<Country>();
+        // try catch to deal with sqlexception
+        try
+        {
+            // creates the statement and result set for the query
+            Statement stmt = con.createStatement();
+            String popRegString =
+                    "SELECT code, name, continent, region, population, capital "
+                            + "FROM country "
+                            + "WHERE region ='" + reg + "'"
+                            + "ORDER BY population DESC";
+            ResultSet rset = stmt.executeQuery(popRegString);
+
+            // while there is more results add each country into the array list
+            while (rset.next())
+            {
+                Country cntry = new Country(rset.getString("code"),
+                        rset.getString("name"),
+                        rset.getString("continent"),
+                        rset.getString("region"),
+                        rset.getInt("population"),
+                        rset.getInt("capital"));
+                countries.add(cntry);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries in " + reg + " by population");
         }
         return countries;
     }
