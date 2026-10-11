@@ -172,19 +172,43 @@ public class Main
             // receive region to see
             System.out.println(regionsMessage);
             String region = scan.nextLine();
+            System.out.println("do you want a limit on the number of countries in "+ region +" ordered by population to see? ");
+            String willLimit = scan.nextLine();
 
-            // create array list and assign countries in chosen region using Country method
-            ArrayList<Country> countriesByPopRegion = new ArrayList<>(Country.getCountriesByPopRegion(m.con, region));
-            System.out.println("countries in " + region + " filtered by population:");
-            for (Country c : countriesByPopRegion) {
-                System.out.println(c.toString());
-            }
-            // ask user if they'd like to continue
-            System.out.println("would you like to see another region?");
-            regionsChoice = scan.nextLine();
-            if (regionsChoice.equals("no"))
+            if (willLimit.equals("no"))
             {
-                break;
+                // create array list and assign countries in chosen region using Country method
+                ArrayList<Country> countriesByPopRegion = new ArrayList<>(Country.getCountriesByPopRegion(m.con, region));
+                System.out.println("countries in " + region + " filtered by population:");
+                for (Country c : countriesByPopRegion) {
+                    System.out.println(c.toString());
+                }
+                // ask user if they'd like to continue
+                System.out.println("would you like to see another region?");
+                regionsChoice = scan.nextLine();
+                if (regionsChoice.equals("no"))
+                {
+                    break;
+                }
+            }
+            else
+            {
+                System.out.println("please enter a positive integer value for the limit.");
+                int limit = scan.nextInt();
+                scan.nextLine();
+                // create array list and assign countries in chosen region using Country method
+                ArrayList<Country> countriesByPopRegion = new ArrayList<>(Country.getNCountriesByPopRegion(m.con, region, limit));
+                System.out.println("the first "+ limit +" countries in " + region + " filtered by population:");
+                for (Country c : countriesByPopRegion) {
+                    System.out.println(c.toString());
+                }
+                // ask user if they'd like to continue
+                System.out.println("would you like to see another region?");
+                regionsChoice = scan.nextLine();
+                if (regionsChoice.equals("no"))
+                {
+                    break;
+                }
             }
         }
     }

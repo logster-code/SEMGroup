@@ -264,6 +264,50 @@ public class Country {
         }
         return countries;
     }
+    /**
+     * Gets N countries in a region by population.
+     *
+     * @param con  the connection
+     * @param reg the region
+     * @return the N number of countries in a region sorted by population descending
+     */
+    public static ArrayList<Country> getNCountriesByPopRegion(Connection con, String reg, int n)
+    {
+        //creates empty list to store countries
+        ArrayList<Country> countries = new ArrayList<Country>();
+        // try catch to deal with sqlexception
+        try
+        {
+            // creates the statement and result set for the query
+            Statement stmt = con.createStatement();
+            String popRegString =
+                    "SELECT code, name, continent, region, population, capital "
+                            + "FROM country "
+                            + "WHERE region ='" + reg + "'"
+                            + "ORDER BY population DESC "
+                            + "LIMIT " + n;
+            ResultSet rset = stmt.executeQuery(popRegString);
+
+            // while there is more results add each country into the array list
+            while (rset.next())
+            {
+                Country cntry = new Country(rset.getString("code"),
+                        rset.getString("name"),
+                        rset.getString("continent"),
+                        rset.getString("region"),
+                        rset.getInt("population"),
+                        rset.getInt("capital"));
+                countries.add(cntry);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries in " + reg + " by population");
+        }
+        return countries;
+    }
+
 
     /**
      * Gets code.
