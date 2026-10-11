@@ -40,10 +40,12 @@ public class Main
         // create new main and begin connection process to database
         Main m = new Main();
         m.connect();
+
+        Scanner scan = new Scanner(System.in);
         // call each feature method
-        feature1and4(m);
-        feature2and5(m);
-        feature3and6(m);
+        feature1and4(m, scan);
+        feature2and5(m, scan);
+        feature3and6(m, scan);
 
         m.disconnect();
     }
@@ -55,9 +57,8 @@ public class Main
      *
      * @param m the object m to create a database connection
      */
-    public static void feature1and4(Main m)
+    public static void feature1and4(Main m, Scanner scan)
     {
-        Scanner scan = new Scanner(System.in);
         // check if user wants a limit on the output.
         System.out.println("do you want a limit on the number of countries ordered by population to see? ");
         String willLimit = scan.nextLine();
@@ -84,7 +85,7 @@ public class Main
             {
                 System.out.println(c.toString());
             }
-            System.out.println("would you like to redo this with a different number? (if you would like to see all countries please enter 239)");
+            System.out.println("would you like to redo this with a different number? (if you would like to see all countries please enter yes then 239)");
             willLimit = scan.nextLine();
             if (willLimit.equals("no"))
             {
@@ -101,10 +102,9 @@ public class Main
      *
      * @param m the object m to create a database connection
      */
-    public static void feature2and5(Main m)
+    public static void feature2and5(Main m, Scanner scan)
     {
-        // initialise scanner variable and receive decision on continents list
-        Scanner scan = new Scanner(System.in);
+        //  receive decision on continents list
         System.out.println("Would you like to see a continents countries sorted by population? (yes/no)");
         String userChoice = scan.nextLine();
 
@@ -163,10 +163,9 @@ public class Main
      * Feature 6. adds a limit option to feature 3
      * @param m the object m to create a database connection
      */
-    public static void feature3and6(Main m)
+    public static void feature3and6(Main m, Scanner scan)
     {
         // process will be same as continent simply replacing the continents with regions.
-        Scanner scan = new Scanner(System.in);
         System.out.println("Would you like to see a regions countries sorted by population? (yes/no)");
         String regionsChoice = scan.nextLine();
 
