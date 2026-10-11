@@ -97,7 +97,7 @@ public class Country {
      * Gets N countries by population using an sql statement.
      *
      * @param con the connection to the database
-     * @return the countries sorted by population descending
+     * @return the N number of countries sorted by population descending
      */
     public static ArrayList<Country> getNCountriesByPop(Connection con, int n)
     {
@@ -140,7 +140,7 @@ public class Country {
      *
      * @param con  the connection
      * @param cont the continent
-     * @return the countries by in a continent sorted by population descending
+     * @return the countries in a continent sorted by population descending
      */
     public static ArrayList<Country> getCountriesByPopContinent(Connection con, String cont)
     {
@@ -156,6 +156,50 @@ public class Country {
                             + "FROM country "
                             + "WHERE continent ='" + cont + "'"
                             + "ORDER BY population DESC";
+            ResultSet rset = stmt.executeQuery(popContString);
+
+            // while there is more results add each country into the array list
+            while (rset.next())
+            {
+                Country cntry = new Country(rset.getString("code"),
+                        rset.getString("name"),
+                        rset.getString("continent"),
+                        rset.getString("region"),
+                        rset.getInt("population"),
+                        rset.getInt("capital"));
+                countries.add(cntry);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries in " + cont + " by population");
+        }
+        return countries;
+    }
+
+    /**
+     * Gets N countries in a continent by population.
+     *
+     * @param con  the connection
+     * @param cont the continent
+     * @return the N number of countries by in a continent sorted by population descending
+     */
+    public static ArrayList<Country> getNCountriesByPopContinent(Connection con, String cont, int n)
+    {
+        //creates empty list to store countries
+        ArrayList<Country> countries = new ArrayList<Country>();
+        // try catch to deal with sqlexception
+        try
+        {
+            // creates the statement and result set for the query
+            Statement stmt = con.createStatement();
+            String popContString =
+                    "SELECT code, name, continent, region, population, capital "
+                            + "FROM country "
+                            + "WHERE continent ='" + cont + "'"
+                            + "ORDER BY population DESC "
+                            + "LIMIT " + n;
             ResultSet rset = stmt.executeQuery(popContString);
 
             // while there is more results add each country into the array list

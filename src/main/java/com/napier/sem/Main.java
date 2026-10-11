@@ -110,20 +110,47 @@ public class Main
             // receive continent to see
             System.out.println(continentMessage);
             String continent = scan.nextLine();
+            System.out.println("do you want a limit on the number of countries in "+ continent +" ordered by population to see? ");
+            String willLimit = scan.nextLine();
 
-            // create array list and assign countries in chosen continent using Country method
-            ArrayList<Country> countriesByPopContinent = new ArrayList<>(Country.getCountriesByPopContinent(m.con, continent));
-            System.out.println("countries in " + continent + " filtered by population:");
-            for (Country c : countriesByPopContinent) {
-                System.out.println(c.toString());
-            }
-            // ask user if they'd like to continue
-            System.out.println("would you like to see another continent?");
-            userChoice = scan.nextLine();
-            if (userChoice.equals("no"))
+            if (willLimit.equals("no"))
             {
-                break;
+                // create array list and assign countries in chosen continent using Country method
+                ArrayList<Country> countriesByPopContinent = new ArrayList<>(Country.getCountriesByPopContinent(m.con, continent));
+                System.out.println("countries in " + continent + " filtered by population:");
+                for (Country c : countriesByPopContinent) {
+                    System.out.println(c.toString());
+                }
+                // ask user if they'd like to continue
+                System.out.println("would you like to see another continent?");
+                userChoice = scan.nextLine();
+                if (userChoice.equals("no"))
+                {
+                    break;
+                }
             }
+            else
+            {
+                // receive value for limit
+                System.out.println("please enter a positive integer value for the limit.");
+                int limit = scan.nextInt();
+                scan.nextLine();
+                // create array list and assign countries in chosen continent using Country method
+                ArrayList<Country> countriesByPopContinent = new ArrayList<>(Country.getNCountriesByPopContinent(m.con, continent, limit));
+                System.out.println("first "+ limit +" countries in " + continent + " filtered by population:");
+                // print each country
+                for (Country c : countriesByPopContinent) {
+                    System.out.println(c.toString());
+                }
+                // ask user if they'd like to continue
+                System.out.println("would you like to see another continent?");
+                userChoice = scan.nextLine();
+                if (userChoice.equals("no"))
+                {
+                    break;
+                }
+            }
+
         }
     }
 
