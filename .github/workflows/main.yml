@@ -18,5 +18,6 @@ jobs:
       - name: Build with Maven
         run: mvn package
       - name: Run docker compose
-        run: docker compose up --abort-on-container-exit
+        run: |
+          printf "yes\n1o\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose up --abort-on-container-exit
 
