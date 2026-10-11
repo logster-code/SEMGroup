@@ -12,6 +12,23 @@ public class Main
     // variable used to create the database connection
     private Connection con = null;
 
+    /**
+     * The constant regionsMessage. Prompt to show all regions for a user to choose from
+     */
+    public static final String regionsMessage = "please enter one of the following regions: \n Australia and New Zealand " +
+            "\n Baltic Countries \n British Islands \n Caribbean " +
+            "\n Central Africa \n Central America " +
+            "\n eastern Africa \n Eastern Asia \n Eastern Europe \n Melanesia " +
+            "\n Micronesia \n Micronesia/Caribbean \n Middle East \n Nordic Countries " +
+            "\n North America \n Northern Africa \n Polynesia \n South America \n Southeast Asia " +
+            "\n Southern Africa \n Southern Europe \n Southern and Central Asia \n Western Africa " +
+            "\n Western Europe \n this is case sensitive! ";
+
+    /**
+     * The constant continentMessage. Prompt to show all continents for a user to choose from
+     */
+    public static final String continentMessage = "please enter one of the following continents: \n Africa \n Antarctica " +
+            "\n Asia \n Europe \n Oceania \n North America \n South America \n this is case sensitive!\n";
 
     /**
      * The entry point of application.
@@ -23,8 +40,39 @@ public class Main
         // create new main and begin connection process to database
         Main m = new Main();
         m.connect();
+        // call each feature method
         feature1(m);
+        feature2(m);
+        feature3(m);
 
+        m.disconnect();
+    }
+
+    /**
+     * Feature 1. display every country in the world
+     * ordered by population descending
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void feature1(Main m)
+    {
+        //creating arraylist to store result of countries by population and printing each country out
+        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+        System.out.println("countries in the world filtered by population:");
+        for (Country c : countriesByPop)
+        {
+            System.out.println(c.toString());
+        }
+    }
+
+    /**
+     * Feature 2. display every country in a continent
+     * ordered by population descending
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void feature2(Main m)
+    {
         // initialise scanner variable and receive decision on continents list
         Scanner scan = new Scanner(System.in);
         System.out.println("Would you like to see a continents countries sorted by population? (yes/no)");
@@ -33,7 +81,7 @@ public class Main
         // loop while user wants to see continents list
         while (!userChoice.equals("no")) {
             // receive continent to see
-            System.out.println("please enter one of the following continents: \n Africa \n Antarctica \n Asia \n Europe \n Oceania \n North America \n South America \n this is case sensitive!\n");
+            System.out.println(continentMessage);
             String continent = scan.nextLine();
 
             // create array list and assign countries in chosen continent using Country method
@@ -50,21 +98,25 @@ public class Main
                 break;
             }
         }
+    }
+
+    /**
+     * Feature 3. display every country in a region
+     * ordered by population descending
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void feature3(Main m)
+    {
         // process will be same as continent simply replacing the continents with regions.
+        Scanner scan = new Scanner(System.in);
         System.out.println("Would you like to see a regions countries sorted by population? (yes/no)");
         String regionsChoice = scan.nextLine();
 
         // loop while user wants to see region list
         while (!regionsChoice.equals("no")) {
             // receive region to see
-            System.out.println("please enter one of the following regions: \n Australia and New Zealand " +
-                    "\n Baltic Countries \n British Islands \n Caribbean " +
-                    "\n Central Africa \n Central America " +
-                    "\n eastern Africa \n Eastern Asia \n Eastern Europe \n Melanesia " +
-                    "\n Micronesia \n Micronesia/Caribbean \n Middle East \n Nordic Countries " +
-                    "\n North America \n Northern Africa \n Polynesia \n South America \n Southeast Asia " +
-                    "\n Southern Africa \n Southern Europe \n Southern and Central Asia \n Western Africa " +
-                    "\n Western Europe \n this is case sensitive! ");
+            System.out.println(regionsMessage);
             String region = scan.nextLine();
 
             // create array list and assign countries in chosen region using Country method
@@ -80,18 +132,6 @@ public class Main
             {
                 break;
             }
-        }
-        m.disconnect();
-    }
-
-    public static void feature1(Main m)
-    {
-        //creating arraylist to store result of countries by population and printing each country out
-        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
-        System.out.println("countries in the world filtered by population:");
-        for (Country c : countriesByPop)
-        {
-            System.out.println(c.toString());
         }
     }
 
