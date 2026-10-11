@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,7 +57,36 @@ public class Main
             }
         }
         // process will be same as continent simply replacing the continents with regions.
+        System.out.println("Would you like to see a regions countries sorted by population? (yes/no)");
+        String regionsChoice = scan.nextLine();
 
+        // loop while user wants to see region list
+        while (!regionsChoice.equals("no")) {
+            // receive region to see
+            System.out.println("please enter one of the following regions: \n Australia and New Zealand " +
+                    "\n Baltic Countries \n British Islands \n Caribbean " +
+                    "\n Central Africa \n Central America " +
+                    "\n eastern Africa \n Eastern Asia \n Eastern Europe \n Melanesia " +
+                    "\n Micronesia \n Micronesia/Caribbean \n Middle East \n Nordic Countries " +
+                    "\n North America \n Northern Africa \n Polynesia \n South America \n Southeast Asia " +
+                    "\n Southern Africa \n Southern Europe \n Southern and Central Asia \n Western Africa " +
+                    "\n Western Europe \n this is case sensitive! ");
+            String region = scan.nextLine();
+
+            // create array list and assign countries in chosen region using Country method
+            ArrayList<Country> countriesByPopRegion = new ArrayList<>(Country.getCountriesByPopRegion(m.con, region));
+            System.out.println("countries in " + region + " filtered by population:");
+            for (Country c : countriesByPopRegion) {
+                System.out.println(c.toString());
+            }
+            // ask user if they'd like to continue
+            System.out.println("would you like to see another region?");
+            regionsChoice = scan.nextLine();
+            if (regionsChoice.equals("no"))
+            {
+                break;
+            }
+        }
         m.disconnect();
     }
 
