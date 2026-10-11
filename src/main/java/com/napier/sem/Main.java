@@ -41,9 +41,9 @@ public class Main
         Main m = new Main();
         m.connect();
         // call each feature method
-        feature1(m);
-        feature2(m);
-        feature3(m);
+        feature1and4(m);
+        feature2and5(m);
+        feature3and6(m);
 
         m.disconnect();
     }
@@ -54,14 +54,33 @@ public class Main
      *
      * @param m the object m to create a database connection
      */
-    public static void feature1(Main m)
+    public static void feature1and4(Main m)
     {
-        //creating arraylist to store result of countries by population and printing each country out
-        ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
-        System.out.println("countries in the world filtered by population:");
-        for (Country c : countriesByPop)
+        Scanner scan = new Scanner(System.in);
+        // check if user wants a limit on the output.
+        System.out.println("do you want a limit on the number of countries ordered by population to see? ");
+        String willLimit = scan.nextLine();
+        // if so receive the limit and pass it to the appropriate method.
+        if (willLimit.equals("yes"))
         {
-            System.out.println(c.toString());
+            System.out.println("please enter a positive integer value for the limit.");
+            int limit = scan.nextInt();
+            // create array list to store countries and print each country out
+            ArrayList<Country> countriesByPop = new ArrayList<>(Country.getNCountriesByPop(m.con, limit));
+            for (Country c : countriesByPop)
+            {
+                System.out.println(c.toString());
+            }
+        }
+        // otherwise proceed without a limit.
+        else
+        {
+            //create array list to store countries and print each country out
+            ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+            System.out.println("countries in the world filtered by population:");
+            for (Country c : countriesByPop) {
+                System.out.println(c.toString());
+            }
         }
     }
 
@@ -71,7 +90,7 @@ public class Main
      *
      * @param m the object m to create a database connection
      */
-    public static void feature2(Main m)
+    public static void feature2and5(Main m)
     {
         // initialise scanner variable and receive decision on continents list
         Scanner scan = new Scanner(System.in);
@@ -106,7 +125,7 @@ public class Main
      *
      * @param m the object m to create a database connection
      */
-    public static void feature3(Main m)
+    public static void feature3and6(Main m)
     {
         // process will be same as continent simply replacing the continents with regions.
         Scanner scan = new Scanner(System.in);
