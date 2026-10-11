@@ -4,7 +4,6 @@ services:
   app:
     build: .
     stdin_open: true
-    tty: true
 
   # db is db folder
   db:
