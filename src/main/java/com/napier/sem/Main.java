@@ -51,6 +51,7 @@ public class Main
     /**
      * Feature 1. display every country in the world
      * ordered by population descending
+     * Feature 4. adds a limit option to feature 1
      *
      * @param m the object m to create a database connection
      */
@@ -95,6 +96,8 @@ public class Main
     /**
      * Feature 2. display every country in a continent
      * ordered by population descending
+     *Feature 5. adds a limit option to feature 2
+     *
      *
      * @param m the object m to create a database connection
      */
@@ -157,7 +160,7 @@ public class Main
     /**
      * Feature 3. display every country in a region
      * ordered by population descending
-     *
+     * Feature 6. adds a limit option to feature 3
      * @param m the object m to create a database connection
      */
     public static void feature3and6(Main m)
