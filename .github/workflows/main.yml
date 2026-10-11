@@ -19,5 +19,7 @@ jobs:
         run: mvn package
       - name: Run docker compose
         run: |
-          printf "yes\n1o\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose up --abort-on-container-exit
+          docker compose up  -d db
+          printf "yes\n1o\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose run --rm -T app
+          docker compose down
 
