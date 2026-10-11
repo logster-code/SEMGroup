@@ -60,26 +60,34 @@ public class Main
         // check if user wants a limit on the output.
         System.out.println("do you want a limit on the number of countries ordered by population to see? ");
         String willLimit = scan.nextLine();
+
+        if  (willLimit.equals("no"))
+        {
+            //create array list to store countries and print each country out
+            ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+            System.out.println("countries in the world filtered by population:");
+            for (Country c : countriesByPop)
+            {
+                System.out.println(c.toString());
+            }
+        }
         // if so receive the limit and pass it to the appropriate method.
-        if (willLimit.equals("yes"))
+        while (!willLimit.equals("no"))
         {
             System.out.println("please enter a positive integer value for the limit.");
             int limit = scan.nextInt();
+            scan.nextLine();
             // create array list to store countries and print each country out
             ArrayList<Country> countriesByPop = new ArrayList<>(Country.getNCountriesByPop(m.con, limit));
             for (Country c : countriesByPop)
             {
                 System.out.println(c.toString());
             }
-        }
-        // otherwise proceed without a limit.
-        else
-        {
-            //create array list to store countries and print each country out
-            ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
-            System.out.println("countries in the world filtered by population:");
-            for (Country c : countriesByPop) {
-                System.out.println(c.toString());
+            System.out.println("would you like to redo this with a different number? (if you would like to see all countries please enter 239)");
+            willLimit = scan.nextLine();
+            if (willLimit.equals("no"))
+            {
+                break;
             }
         }
     }
