@@ -20,6 +20,6 @@ jobs:
       - name: Run docker compose
         run: |
           docker compose up  -d db
-          printf "yes\n1o\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose run --rm -T app
+          printf "yes\n10\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose run --rm -T app
           docker compose down
 
