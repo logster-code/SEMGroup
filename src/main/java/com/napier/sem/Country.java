@@ -92,6 +92,41 @@ public class Country {
             }
         return countries;
     }
+    public static ArrayList<Country> getCountriesByPopContinent(Connection con, String cont)
+    {
+        //creates empty list to store countries
+        ArrayList<Country> countries = new ArrayList<Country>();
+        // try catch to deal with sqlexception
+        try
+        {
+            // creates the statement and result set for the query
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT code, name, continent, region, population, capital "
+                            + "FROM country "
+                            + "WHERE continent ='" + cont + "'"
+                            + "ORDER BY population DESC";
+            ResultSet rset = stmt.executeQuery(popString);
+
+            // while there is more results add each country into the array list
+            while (rset.next())
+            {
+                Country cntry = new Country(rset.getString("code"),
+                        rset.getString("name"),
+                        rset.getString("continent"),
+                        rset.getString("region"),
+                        rset.getInt("population"),
+                        rset.getInt("capital"));
+                countries.add(cntry);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by population");
+        }
+        return countries;
+    }
 
     /**
      * Gets code.

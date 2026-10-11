@@ -1,7 +1,9 @@
 package com.napier.sem;
 
+import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * main class for our program. will be used to call all the data we have sorted and display the results.
@@ -24,12 +26,33 @@ public class Main
         m.connect();
         //creating arraylist to store result of countries by population and printing each country out
         ArrayList<Country> countriesByPop = new ArrayList<>(Country.getCountriesByPop(m.con));
+        System.out.println("countries in the world filtered by population:");
         for (Country c : countriesByPop)
         {
             System.out.println(c.toString());
         }
-        m.disconnect();
 
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Would you like to see a continents countries sorted by population? (yes/no)");
+        String userChoice = scan.nextLine();
+
+        while (!userChoice.equals("no")) {
+            System.out.println("please enter one of the following continents: \n Africa \n Antarctica \n Asia \n Europe \n Oceania \n North America \n South America \n this is case sensitive!\n");
+            String continent = scan.nextLine();
+
+            ArrayList<Country> countriesByPopContinent = new ArrayList<>(Country.getCountriesByPopContinent(m.con, continent));
+            System.out.println("countries in " + continent + " filtered by population:");
+            for (Country c : countriesByPopContinent) {
+                System.out.println(c.toString());
+            }
+            System.out.println("would you like to see another continent?");
+            userChoice = scan.nextLine();
+            if (userChoice.equals("no"))
+            {
+                break;
+            }
+        }
+        m.disconnect();
     }
 
     /**
