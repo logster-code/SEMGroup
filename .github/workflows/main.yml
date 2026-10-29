@@ -1,4 +1,4 @@
-name: A workflow for our group project
+name: A workflow for my Hello World App
 on: push
 
 jobs:
@@ -18,8 +18,6 @@ jobs:
       - name: Build with Maven
         run: mvn package
       - name: Run docker compose
-        run: |
-          docker compose up  -d db
-          printf "yes\n10\nno\nyes\nEurope\nno\nno\nyes\nWestern Europe\nyes\n5\nno\n" | docker compose run --rm -T app
-          docker compose down
+        run: docker compose up --abort-on-container-exit
+
 
