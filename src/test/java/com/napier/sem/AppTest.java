@@ -79,4 +79,39 @@ public class AppTest
 
         assertNull(app.getConnection());
     }
+    @Test
+    void testCityFirstInput()
+    {
+        assertEquals("yes", Main.inputs[12]);
+    }
+
+    @Test
+    void testCityPopulationLimitInput()
+    {
+        assertEquals("10", Main.inputs[13]);
+    }
+
+    @Test
+    void testCityContinentInput()
+    {
+        assertEquals("Europe", Main.inputs[15]);
+    }
+
+    @Test
+    void testCityRegionInput()
+    {
+        assertEquals("Western Europe", Main.inputs[18]);
+    }
+
+    @Test
+    void testCityCountryInput()
+    {
+        assertEquals("United Kingdom", Main.inputs[21]);
+    }
+
+    @Test
+    void testCityDistrictInput()
+    {
+        assertEquals("England", Main.inputs[24]);
+    }
 }
