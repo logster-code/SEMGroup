@@ -31,7 +31,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -40,7 +39,7 @@
                     <finalName>devops</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.devops.App</mainClass>
+                            <mainClass>com.napier.sem.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -60,5 +59,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
