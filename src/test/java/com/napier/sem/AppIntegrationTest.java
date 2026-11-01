@@ -134,4 +134,185 @@ public class AppIntegrationTest
             assertEquals("Western Europe", country.getRegion());
         }
     }
+
+    @Test
+    void testAllCitiesByPop()
+    {
+        ArrayList<City> cities =
+                City.getCitiesByPop(app.getConnection());
+
+        assertNotNull(cities);
+        assertEquals(4079, cities.size());
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testNCitiesByPop()
+    {
+        ArrayList<City> cities =
+                City.getNCitiesByPop(app.getConnection(), 10);
+
+        assertNotNull(cities);
+        assertEquals(10, cities.size());
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testCitiesByPopContinent()
+    {
+        ArrayList<City> cities =
+                City.getCitiesByPopContinent(
+                        app.getConnection(), "Europe");
+
+        assertNotNull(cities);
+        assertFalse(cities.isEmpty());
+
+        for (City city : cities)
+        {
+            assertTrue(city.getPopulation() >= 0);
+        }
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testNCitiesByPopContinent()
+    {
+        ArrayList<City> cities =
+                City.getNCitiesByPopContinent(
+                        app.getConnection(), "Europe", 5);
+
+        assertNotNull(cities);
+        assertEquals(5, cities.size());
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testCitiesByPopRegion()
+    {
+        ArrayList<City> cities =
+                City.getCitiesByPopRegion(
+                        app.getConnection(), "Western Europe");
+
+        assertNotNull(cities);
+        assertFalse(cities.isEmpty());
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testNCitiesByPopRegion()
+    {
+        ArrayList<City> cities =
+                City.getNCitiesByPopRegion(
+                        app.getConnection(), "Western Europe", 5);
+
+        assertNotNull(cities);
+        assertEquals(5, cities.size());
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testCitiesByPopCountry()
+    {
+        ArrayList<City> cities =
+                City.getCitiesByPopCountry(
+                        app.getConnection(), "United Kingdom");
+
+        assertNotNull(cities);
+        assertFalse(cities.isEmpty());
+
+        for (City city : cities)
+        {
+            assertEquals("United Kingdom", city.getCountry());
+        }
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testNCitiesByPopCountry()
+    {
+        ArrayList<City> cities =
+                City.getNCitiesByPopCountry(
+                        app.getConnection(), "United Kingdom", 5);
+
+        assertNotNull(cities);
+        assertEquals(5, cities.size());
+
+        for (City city : cities)
+        {
+            assertEquals("United Kingdom", city.getCountry());
+        }
+    }
+
+    @Test
+    void testCitiesByPopDistrict()
+    {
+        ArrayList<City> cities =
+                City.getCitiesByPopDistrict(
+                        app.getConnection(), "England");
+
+        assertNotNull(cities);
+        assertFalse(cities.isEmpty());
+
+        for (City city : cities)
+        {
+            assertEquals("England", city.getDistrict());
+        }
+
+        for (int i = 0; i < cities.size() - 1; i++)
+        {
+            assertTrue(cities.get(i).getPopulation() >=
+                    cities.get(i + 1).getPopulation());
+        }
+    }
+
+    @Test
+    void testNCitiesByPopDistrict()
+    {
+        ArrayList<City> cities =
+                City.getNCitiesByPopDistrict(
+                        app.getConnection(), "England", 5);
+
+        assertNotNull(cities);
+        assertEquals(5, cities.size());
+
+        for (City city : cities)
+        {
+            assertEquals("England", city.getDistrict());
+        }
+    }
 }
