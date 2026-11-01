@@ -30,7 +30,10 @@ public class Main
             "\n Asia \n Europe \n Oceania \n North America \n South America \n this is case sensitive!\n";
 
     public static final String[] inputs = new String[]{
-            "yes", "10", "no", "yes", "Europe", "no", "no", "yes", "Western Europe", "yes", "5", "no"
+            "yes", "10", "no", "yes", "Europe", "no", "no", "yes",
+            "Western Europe", "yes", "5", "no","yes", "10",
+            "yes", "Europe", "no", "yes", "Western Europe", "no",
+            "yes", "United Kingdom", "no", "yes", "England", "no"
     };
 
     /**
@@ -52,6 +55,11 @@ public class Main
         allCountriesByPop(m);
         countriesContinentByPop(m);
         countriesRegionByPop(m);
+        allCitiesByPop(m);
+        citiesContinentByPop(m);
+        citiesRegionByPop(m);
+        citiesCountryByPop(m);
+        citiesDistrictByPop(m);
 
         m.disconnect();
     }
@@ -217,6 +225,239 @@ public class Main
             }
         }
     }
+
+    /**
+     * Feature 7. Display every city in the world.
+     * Feature 8. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void allCitiesByPop(Main m)
+    {
+        System.out.println("Do you want a limit on the number of cities ordered by population to see?");
+        System.out.println(inputs[12]);
+
+        if (inputs[12].equals("no"))
+        {
+            ArrayList<City> citiesByPop = new ArrayList<>(City.getCitiesByPop(m.con));
+            System.out.println("cities in the world filtered by population:");
+
+            for (City c : citiesByPop)
+            {
+                System.out.println(c.toString());
+            }
+        }
+        else
+        {
+            System.out.println("Please enter a positive integer value for the limit.");
+            System.out.println(inputs[13]);
+
+            ArrayList<City> citiesByPop = new ArrayList<>(
+                    City.getNCitiesByPop(m.con, Integer.parseInt(inputs[13])));
+
+            for (City c : citiesByPop)
+            {
+                System.out.println(c.toString());
+            }
+        }
+    }
+
+    /**
+     * Feature 9. Display cities in a continent by population.
+     * Feature 10. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void citiesContinentByPop(Main m)
+    {
+        System.out.println("Would you like to see a continent's cities sorted by population? (yes/no)");
+        System.out.println(inputs[14]);
+
+        while (!inputs[14].equals("no"))
+        {
+            System.out.println(continentMessage);
+            System.out.println(inputs[15]);
+
+            System.out.println("Do you want a limit on the number of cities in "
+                    + inputs[15] + " ordered by population to see?");
+            System.out.println(inputs[16]);
+
+            if (inputs[16].equals("no"))
+            {
+                ArrayList<City> citiesByPopContinent = new ArrayList<>(
+                        City.getCitiesByPopContinent(m.con, inputs[15]));
+
+                System.out.println("cities in " + inputs[15] + " filtered by population:");
+
+                for (City c : citiesByPopContinent)
+                {
+                    System.out.println(c.toString());
+                }
+
+                System.out.println("Would you like to see another continent?");
+                System.out.println("no");
+
+                break;
+            }
+            else
+            {
+                System.out.println("Please enter a positive integer value for the limit.");
+                System.out.println("5");
+
+                ArrayList<City> citiesByPopContinent = new ArrayList<>(
+                        City.getNCitiesByPopContinent(m.con, inputs[15], 5));
+
+                for (City c : citiesByPopContinent)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * Feature 11. Display cities in a region by population.
+     * Feature 12. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void citiesRegionByPop(Main m)
+    {
+        System.out.println("Would you like to see a region's cities sorted by population? (yes/no)");
+        System.out.println(inputs[17]);
+
+        while (!inputs[17].equals("no"))
+        {
+            System.out.println(regionsMessage);
+            System.out.println(inputs[18]);
+
+            System.out.println("Do you want a limit on the number of cities in "
+                    + inputs[18] + " ordered by population to see?");
+            System.out.println(inputs[19]);
+
+            if (inputs[19].equals("no"))
+            {
+                ArrayList<City> citiesByPopRegion = new ArrayList<>(
+                        City.getCitiesByPopRegion(m.con, inputs[18]));
+
+                System.out.println("cities in " + inputs[18] + " filtered by population:");
+
+                for (City c : citiesByPopRegion)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+            else
+            {
+                ArrayList<City> citiesByPopRegion = new ArrayList<>(
+                        City.getNCitiesByPopRegion(m.con, inputs[18], 5));
+
+                for (City c : citiesByPopRegion)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * Feature 13. Display cities in a country by population.
+     * Feature 14. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void citiesCountryByPop(Main m)
+    {
+        System.out.println("Would you like to see a country's cities sorted by population? (yes/no)");
+        System.out.println(inputs[20]);
+
+        while (!inputs[20].equals("no"))
+        {
+            System.out.println("Please enter a country:");
+            System.out.println(inputs[21]);
+
+            System.out.println("Do you want a limit on the number of cities?");
+            System.out.println(inputs[22]);
+
+            if (inputs[22].equals("no"))
+            {
+                ArrayList<City> citiesByPopCountry = new ArrayList<>(
+                        City.getCitiesByPopCountry(m.con, inputs[21]));
+
+                for (City c : citiesByPopCountry)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+            else
+            {
+                ArrayList<City> citiesByPopCountry = new ArrayList<>(
+                        City.getNCitiesByPopCountry(m.con, inputs[21], 5));
+
+                for (City c : citiesByPopCountry)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * Feature 15. Display cities in a district by population.
+     * Feature 16. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void citiesDistrictByPop(Main m)
+    {
+        System.out.println("Would you like to see a district's cities sorted by population? (yes/no)");
+        System.out.println(inputs[23]);
+
+        while (!inputs[23].equals("no"))
+        {
+            System.out.println("Please enter a district:");
+            System.out.println(inputs[24]);
+
+            System.out.println("Do you want a limit on the number of cities?");
+            System.out.println(inputs[25]);
+
+            if (inputs[25].equals("no"))
+            {
+                ArrayList<City> citiesByPopDistrict = new ArrayList<>(
+                        City.getCitiesByPopDistrict(m.con, inputs[24]));
+
+                for (City c : citiesByPopDistrict)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+            else
+            {
+                ArrayList<City> citiesByPopDistrict = new ArrayList<>(
+                        City.getNCitiesByPopDistrict(m.con, inputs[24], 5));
+
+                for (City c : citiesByPopDistrict)
+                {
+                    System.out.println(c.toString());
+                }
+
+                break;
+            }
+        }
+    }
+
 
     /**
      * connects to the database and alerts user of any problems

@@ -34,7 +34,7 @@ public class AppTest
 
     @Test
     void testInputsLength() {
-        assertEquals(12, Main.inputs.length);
+        assertEquals(26, Main.inputs.length);
     }
 
     @Test
