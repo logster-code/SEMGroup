@@ -16,7 +16,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new Main();
-        app.connect("localhost:33060", 30000);
+        app.connect("localhost:33060", 3000);
 
         assertNotNull(app.getConnection(), "Failed to connect to the database");
     }
