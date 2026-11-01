@@ -276,4 +276,13 @@ public class Main
             }
         }
     }
+    /**
+     * Gets the database connection.
+     *
+     * @return the database connection
+     */
+    public Connection getConnection()
+    {
+        return con;
+    }
 }
