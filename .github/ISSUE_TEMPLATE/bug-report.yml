@@ -2,9 +2,12 @@ name: Bug Report
 description: SEM group 4, file a bug report.
 title: "[Bug]: "
 labels: ["bug", "triage"]
-projects: ["octo-org/1", "octo-org/44"]
+projects: ["Software engineering methods assignment"]
 assignees:
-  - octocat
+  - Logan
+  - Harry
+  - Aaron
+  - Seamus
 type: bug
 body:
   - type: markdown
