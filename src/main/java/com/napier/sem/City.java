@@ -40,6 +40,264 @@ public class City {
         this.population = population;
     }
 
+    /**
+     * Gets capital cities by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getCapitalCitiesByPop(Connection con)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital "
+                            + "ORDER BY city.Population DESC";
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
+    /**
+     * Gets N capital cities by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @param n the limit chosen
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getNCapitalCitiesByPop(Connection con, int n)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital "
+                            + "ORDER BY city.Population DESC "
+                            + "LIMIT " + n;
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
+
+    /**
+     * Gets capital cities in chosen continent by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @param cont the continent chosen
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getCapitalCitiesByPopContinent(Connection con, String cont)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital AND country.Continent = '" + cont + "' "
+                            + "ORDER BY city.Population DESC";
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
+    /**
+     * Gets n capital cities in chosen continent by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @param cont the continent chosen
+     * @param n the limit chosen
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getNCapitalCitiesByPopContinent(Connection con, String cont, int n)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital AND country.Continent = '" + cont + "' "
+                            + "ORDER BY city.Population DESC "
+                            + "LIMIT " + n;
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
+
+    /**
+     * Gets capital cities in chosen region by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @param reg the region chosen
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getCapitalCitiesByPopRegion(Connection con, String reg)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital AND country.Region = '" + reg + "' "
+                            + "ORDER BY city.Population DESC";
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
+    /**
+     * Gets n capital cities in chosen region by population using an SQL statement.
+     *
+     * @param con the connection to the database
+     * @param reg the region chosen
+     * @param n the limit chosen
+     * @return the cities sorted by population descending
+     */
+    public static ArrayList<City> getNCapitalCitiesByPopRegion(Connection con, String reg, int n)
+    {
+        ArrayList<City> capitalCities = new ArrayList<City>();
+
+        try
+        {
+            Statement stmt = con.createStatement();
+            String popString =
+                    "SELECT city.Name, country.Name AS Country, city.Population "
+                            + "FROM city "
+                            + "JOIN country ON city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital AND country.Region = '" + reg + "' "
+                            + "ORDER BY city.Population DESC "
+                            + "LIMIT " + n;
+
+            ResultSet rset = stmt.executeQuery(popString);
+
+            while (rset.next())
+            {
+                City city = new City(
+                        rset.getString("Name"),
+                        rset.getString("Country"),
+                        "",
+                        rset.getInt("Population"));
+                capitalCities.add(city);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities by population");
+        }
+
+        return capitalCities;
+    }
+
 
     /**
      * Gets cities by population using an SQL statement.

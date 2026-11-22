@@ -33,7 +33,9 @@ public class Main
             "yes", "10", "no", "yes", "Europe", "no", "no", "yes",
             "Western Europe", "yes", "5", "no","yes", "10",
             "yes", "Europe", "no", "yes", "Western Europe", "no",
-            "yes", "United Kingdom", "no", "yes", "England", "no"
+            "yes", "United Kingdom", "no", "yes", "England", "no",
+            "yes", "10", "yes", "Europe", "yes", "5", "yes",
+            "Western Europe", "yes", "5"
     };
 
     /**
@@ -60,6 +62,9 @@ public class Main
         citiesRegionByPop(m);
         citiesCountryByPop(m);
         citiesDistrictByPop(m);
+        AllcapitalCitiesByPop(m);
+        capitalCitiesContinentPop(m);
+        capitalCitiesRegionPop(m);
 
         m.disconnect();
     }
@@ -458,6 +463,155 @@ public class Main
         }
     }
 
+    /**
+     * Feature 17. Display every capital city in the world.
+     * Feature 18. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void AllcapitalCitiesByPop(Main m)
+    {
+        System.out.println("Do you want a limit on the number of capital cities ordered by population to see?");
+        System.out.println(inputs[26]);
+
+        if (inputs[26].equals("no"))
+        {
+            ArrayList<City> capitalCities = new ArrayList<>(
+                    City.getCapitalCitiesByPop(m.con));
+
+            System.out.println("capital cities in the world filtered by population:");
+
+            for (City c : capitalCities)
+            {
+                System.out.println("city{name='" + c.name + "', country= '" + c.country
+                        + "', population= " + c.population + "}");
+            }
+        }
+        else
+        {
+            System.out.println("Please enter a positive integer value for the limit.");
+            System.out.println(inputs[27]);
+
+            ArrayList<City> capitalCities = new ArrayList<>(
+                    City.getNCapitalCitiesByPop(m.con, Integer.parseInt(inputs[27])));
+
+            for (City c : capitalCities)
+            {
+                System.out.println("city{name='" + c.name + "', country= '" + c.country
+                        + "', population= " + c.population + "}");
+            }
+        }
+    }
+
+    /**
+     * Feature 19. Display capital cities in a continent by population.
+     * Feature 20. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void capitalCitiesContinentPop(Main m)
+    {
+        System.out.println("Would you like to see a continent's capital cities sorted by population? (yes/no)");
+        System.out.println(inputs[28]);
+
+        while (!inputs[28].equals("no"))
+        {
+            System.out.println(continentMessage);
+            System.out.println(inputs[29]);
+
+            System.out.println("Do you want a limit on the number of capital cities in "
+                    + inputs[29] + " ordered by population to see?");
+            System.out.println(inputs[30]);
+
+            if (inputs[30].equals("no"))
+            {
+                ArrayList<City> capitalCities = new ArrayList<>(
+                        City.getCapitalCitiesByPopContinent(m.con, inputs[29]));
+
+                System.out.println("capital cities in " + inputs[29] + " filtered by population:");
+
+                for (City c : capitalCities)
+                {
+                    System.out.println("city{name='" + c.name + "', country= '" + c.country
+                            + "', population= " + c.population + "}");
+                }
+
+                break;
+            }
+            else
+            {
+                System.out.println("Please enter a positive integer value for the limit.");
+                System.out.println(inputs[31]);
+
+                ArrayList<City> capitalCities = new ArrayList<>(
+                        City.getNCapitalCitiesByPopContinent(
+                                m.con, inputs[29], Integer.parseInt(inputs[31])));
+
+                for (City c : capitalCities)
+                {
+                    System.out.println("city{name='" + c.name + "', country= '" + c.country
+                            + "', population= " + c.population + "}");
+                }
+
+                break;
+            }
+        }
+    }
+
+    /**
+     * Feature 21. Display capital cities in a region by population.
+     * Feature 22. Adds a limit option.
+     *
+     * @param m the object m to create a database connection
+     */
+    public static void capitalCitiesRegionPop(Main m)
+    {
+        System.out.println("Would you like to see a region's capital cities sorted by population? (yes/no)");
+        System.out.println(inputs[32]);
+
+        while (!inputs[32].equals("no"))
+        {
+            System.out.println(regionsMessage);
+            System.out.println(inputs[33]);
+
+            System.out.println("Do you want a limit on the number of capital cities in "
+                    + inputs[33] + " ordered by population to see?");
+            System.out.println(inputs[34]);
+
+            if (inputs[34].equals("no"))
+            {
+                ArrayList<City> capitalCities = new ArrayList<>(
+                        City.getCapitalCitiesByPopRegion(m.con, inputs[33]));
+
+                System.out.println("capital cities in " + inputs[33] + " filtered by population:");
+
+                for (City c : capitalCities)
+                {
+                    System.out.println("city{name='" + c.name + "', country= '" + c.country
+                            + "', population= " + c.population + "}");
+                }
+
+                break;
+            }
+            else
+            {
+                System.out.println("Please enter a positive integer value for the limit.");
+                System.out.println(inputs[35]);
+
+                ArrayList<City> capitalCities = new ArrayList<>(
+                        City.getNCapitalCitiesByPopRegion(
+                                m.con, inputs[33], Integer.parseInt(inputs[35])));
+
+                for (City c : capitalCities)
+                {
+                    System.out.println("city{name='" + c.name + "', country= '" + c.country
+                    + "', population= " + c.population + "}");
+                }
+
+                break;
+            }
+        }
+    }
 
     /**
      * connects to the database and alerts user of any problems
