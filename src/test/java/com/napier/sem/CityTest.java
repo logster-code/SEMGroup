@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type City test.
+ */
 public class CityTest
 {
     /**
@@ -22,6 +25,9 @@ public class CityTest
         assertEquals(8982000, city.getPopulation());
     }
 
+    /**
+     * Test get name.
+     */
     @Test
     void testGetName()
     {
@@ -31,6 +37,9 @@ public class CityTest
         assertEquals("London", city.getName());
     }
 
+    /**
+     * Test get country.
+     */
     @Test
     void testGetCountry()
     {
@@ -40,6 +49,9 @@ public class CityTest
         assertEquals("United Kingdom", city.getCountry());
     }
 
+    /**
+     * Test get district.
+     */
     @Test
     void testGetDistrict()
     {
@@ -49,6 +61,9 @@ public class CityTest
         assertEquals("England", city.getDistrict());
     }
 
+    /**
+     * Test get population.
+     */
     @Test
     void testGetPopulation()
     {
@@ -58,6 +73,9 @@ public class CityTest
         assertEquals(8982000, city.getPopulation());
     }
 
+    /**
+     * Test set name.
+     */
     @Test
     void testSetName()
     {
@@ -69,6 +87,9 @@ public class CityTest
         assertEquals("Manchester", city.getName());
     }
 
+    /**
+     * Test set country.
+     */
     @Test
     void testSetCountry()
     {
@@ -80,6 +101,9 @@ public class CityTest
         assertEquals("France", city.getCountry());
     }
 
+    /**
+     * Test set district.
+     */
     @Test
     void testSetDistrict()
     {
@@ -91,6 +115,9 @@ public class CityTest
         assertEquals("Greater Manchester", city.getDistrict());
     }
 
+    /**
+     * Test set population.
+     */
     @Test
     void testSetPopulation()
     {
@@ -102,6 +129,9 @@ public class CityTest
         assertEquals(1000000, city.getPopulation());
     }
 
+    /**
+     * Test to string.
+     */
     @Test
     void testToString()
     {

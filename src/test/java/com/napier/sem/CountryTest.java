@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Country test.
+ */
 public class CountryTest
 {
     /**
@@ -25,6 +28,9 @@ public class CountryTest
         assertEquals(456, country.getCapital());
     }
 
+    /**
+     * Test get code.
+     */
     @Test
     void testGetCode()
     {
@@ -36,6 +42,9 @@ public class CountryTest
         assertEquals("GBR", country.getCode());
     }
 
+    /**
+     * Test get name.
+     */
     @Test
     void testGetName()
     {
@@ -47,6 +56,9 @@ public class CountryTest
         assertEquals("United Kingdom", country.getName());
     }
 
+    /**
+     * Test get continent.
+     */
     @Test
     void testGetContinent()
     {
@@ -58,6 +70,9 @@ public class CountryTest
         assertEquals("Europe", country.getContinent());
     }
 
+    /**
+     * Test get region.
+     */
     @Test
     void testGetRegion()
     {
@@ -69,6 +84,9 @@ public class CountryTest
         assertEquals("Western Europe", country.getRegion());
     }
 
+    /**
+     * Test get population.
+     */
     @Test
     void testGetPopulation()
     {
@@ -80,6 +98,9 @@ public class CountryTest
         assertEquals(67886011, country.getPopulation());
     }
 
+    /**
+     * Test get capital.
+     */
     @Test
     void testGetCapital()
     {
@@ -91,6 +112,9 @@ public class CountryTest
         assertEquals(456, country.getCapital());
     }
 
+    /**
+     * Test set code.
+     */
     @Test
     void testSetCode()
     {
@@ -104,6 +128,9 @@ public class CountryTest
         assertEquals("FRA", country.getCode());
     }
 
+    /**
+     * Test set name.
+     */
     @Test
     void testSetName()
     {
@@ -117,6 +144,9 @@ public class CountryTest
         assertEquals("France", country.getName());
     }
 
+    /**
+     * Test set continent.
+     */
     @Test
     void testSetContinent()
     {
@@ -130,6 +160,9 @@ public class CountryTest
         assertEquals("Asia", country.getContinent());
     }
 
+    /**
+     * Test set region.
+     */
     @Test
     void testSetRegion()
     {
@@ -143,6 +176,9 @@ public class CountryTest
         assertEquals("Eastern Europe", country.getRegion());
     }
 
+    /**
+     * Test set population.
+     */
     @Test
     void testSetPopulation()
     {
@@ -156,6 +192,9 @@ public class CountryTest
         assertEquals(1000000, country.getPopulation());
     }
 
+    /**
+     * Test set capital.
+     */
     @Test
     void testSetCapital()
     {
@@ -169,6 +208,9 @@ public class CountryTest
         assertEquals(100, country.getCapital());
     }
 
+    /**
+     * Test to string.
+     */
     @Test
     void testToString()
     {

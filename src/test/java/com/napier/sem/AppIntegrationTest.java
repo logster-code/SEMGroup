@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type App integration test.
+ */
 public class AppIntegrationTest
 {
     /**
@@ -15,6 +18,9 @@ public class AppIntegrationTest
      */
     static Main app;
 
+    /**
+     * Init.
+     */
     @BeforeAll
     static void init()
     {
@@ -24,12 +30,18 @@ public class AppIntegrationTest
         assertNotNull(app.getConnection(), "Failed to connect to the database");
     }
 
+    /**
+     * Disconnect.
+     */
     @AfterAll
     static void disconnect()
     {
         app.disconnect();
     }
 
+    /**
+     * Test all countries by pop.
+     */
     @Test
     void testAllCountriesByPop()
     {
@@ -46,6 +58,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n countries by pop.
+     */
     @Test
     void testNCountriesByPop()
     {
@@ -62,6 +77,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test countries by pop continent.
+     */
     @Test
     void testCountriesByPopContinent()
     {
@@ -84,6 +102,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n countries by pop continent.
+     */
     @Test
     void testNCountriesByPopContinent()
     {
@@ -100,6 +121,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test countries by pop region.
+     */
     @Test
     void testCountriesByPopRegion()
     {
@@ -122,6 +146,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n countries by pop region.
+     */
     @Test
     void testNCountriesByPopRegion()
     {
@@ -138,6 +165,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test all cities by pop.
+     */
     @Test
     void testAllCitiesByPop()
     {
@@ -154,6 +184,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n cities by pop.
+     */
     @Test
     void testNCitiesByPop()
     {
@@ -170,6 +203,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test cities by pop continent.
+     */
     @Test
     void testCitiesByPopContinent()
     {
@@ -192,6 +228,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n cities by pop continent.
+     */
     @Test
     void testNCitiesByPopContinent()
     {
@@ -209,6 +248,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test cities by pop region.
+     */
     @Test
     void testCitiesByPopRegion()
     {
@@ -226,6 +268,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n cities by pop region.
+     */
     @Test
     void testNCitiesByPopRegion()
     {
@@ -243,6 +288,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test cities by pop country.
+     */
     @Test
     void testCitiesByPopCountry()
     {
@@ -265,6 +313,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n cities by pop country.
+     */
     @Test
     void testNCitiesByPopCountry()
     {
@@ -281,6 +332,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test cities by pop district.
+     */
     @Test
     void testCitiesByPopDistrict()
     {
@@ -303,6 +357,9 @@ public class AppIntegrationTest
         }
     }
 
+    /**
+     * Test n cities by pop district.
+     */
     @Test
     void testNCitiesByPopDistrict()
     {
