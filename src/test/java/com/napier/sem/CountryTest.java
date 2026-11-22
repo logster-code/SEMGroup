@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CountryTest
 {
+    /**
+     * Test class containing all tests for the country class
+     */
     @Test
     void testCountryConstructor()
     {

@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CityTest
 {
+    /**
+     * Test class containing all tests for the city class
+     */
     @Test
     void testCityConstructor()
     {

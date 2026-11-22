@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest
 {
+    /**
+     * Test class containing all tests for integration
+     */
     static Main app;
 
     @BeforeAll

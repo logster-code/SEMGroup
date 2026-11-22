@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest
 {
-
+    /**
+     * Test class containing all tests for the Main app class
+     */
     @Test
     void testRegionsMessage() {
         assertTrue(Main.regionsMessage.contains("Western Europe"));
